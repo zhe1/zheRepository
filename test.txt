@@ -1,1 +1,14 @@
-github测试
+bootstrap modal模板框居中显示
+##select 选择器
+function setModelCenter(select){
+        var selection = "#" + select;
+        var modal_selection = selection + " .modal-dialog";
+        $(selection).on('show.bs.modal', function (e) {
+            // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+            $(this).css('display', 'block');
+            var modalHeight=$(window).height() / 2 - $(modal_selection).height() / 2;
+            $(this).find('.modal-dialog').css({
+                'margin-top': modalHeight
+            });
+        });
+    }
