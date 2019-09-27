@@ -1,0 +1,15 @@
+1.进入jenkins安装目录，一般安装目录在 /var/lib/jenkins ，如果忘记装在什么地方，可以使用命令 find / -name jenkins
+2.先备份 config.xml 文件， cp config.xml config.xml.bak ,再修改config.xml ,vim config.xml
+删除如下部分：
+<useSecurity>true</useSecurity>
+<authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
+  <denyAnonymousReadAccess>true</denyAnonymousReadAccess>
+</authorizationStrategy>
+<securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
+  <disableSignup>true</disableSignup>
+  <enableCaptcha>false</enableCaptcha>
+</securityRealm>
+3.重启jenkins
+  service jenkins restart
+4.进入首页-》系统管理-》全局安全配置,把“启用安全”勾上和把Jenkins专有用户数据库勾上,然后在右上角注册一个用户，然后把备份congig.xml改回来就好了
+5.重启jenkins,就可以使用了
